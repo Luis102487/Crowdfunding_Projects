@@ -20,3 +20,8 @@ FROM
   luisalva.crowdfunding_dataset.projects;
 
 
+-- Countries in the dataset
+SELECT
+  DISTINCT country
+FROM
+  luisalva.crowdfunding_dataset.projects;
