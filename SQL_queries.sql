@@ -6,3 +6,17 @@ group by project_id
 order by project_count;
 
 
+-- How many crowdfunding projects in the dataset
+SELECT
+  COUNT(project_id)
+FROM
+  luisalva.crowdfunding_dataset.projects;
+
+
+-- Categories in the dataset
+SELECT
+  DISTINCT category
+FROM
+  luisalva.crowdfunding_dataset.projects;
+
+
