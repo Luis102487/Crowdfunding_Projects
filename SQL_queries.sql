@@ -20,8 +20,34 @@ FROM
   luisalva.crowdfunding_dataset.projects;
 
 
+-- Projects by category
+SELECT
+  category,
+  COUNT(project_id) AS project_count
+FROM
+  luisalva.crowdfunding_dataset.projects
+GROUP BY
+  category
+ORDER BY
+  project_count DESC;
+
+
 -- Countries in the dataset
 SELECT
   DISTINCT country
 FROM
   luisalva.crowdfunding_dataset.projects;
+
+  
+-- Projects by category
+SELECT
+  country,
+  COUNT(project_id) AS project_count
+FROM
+  luisalva.crowdfunding_dataset.projects
+GROUP BY
+  country
+ORDER BY
+  project_count DESC;
+
+
