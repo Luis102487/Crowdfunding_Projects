@@ -94,3 +94,7 @@ what categpories of projects have the largest amount of suceess
 what categories of projects have the least almount of success
 investigate in projects with status success
 leaunch date, dateline
+categories with most backers
+category with most money pleadge
+project with the most money pleadge
+project with the most money goal
