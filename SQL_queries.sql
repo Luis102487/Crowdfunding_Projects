@@ -39,7 +39,7 @@ FROM
   luisalva.crowdfunding_dataset.projects;
 
   
--- Projects by category
+-- Projects by country
 SELECT
   country,
   COUNT(project_id) AS project_count
@@ -49,5 +49,43 @@ GROUP BY
   country
 ORDER BY
   project_count DESC;
+
+
+-- How many statuses are there for projects?
+SELECT
+  DISTINCT status,
+FROM
+  luisalva.crowdfunding_dataset.projects
+
+
+-- Projects status percentage
+SELECT
+  status,
+  COUNT(status) AS status_count,
+  ROUND((COUNT(status)/(
+      SELECT
+        COUNT(status)
+      FROM
+        luisalva.crowdfunding_dataset.projects)) * 100, 2) AS status_percentage
+FROM
+  luisalva.crowdfunding_dataset.projects
+GROUP BY
+  status
+ORDER BY
+  status_percentage DESC;
+
+
+-- What is the highest status count in the USA?
+SELECT
+  status,
+  COUNT(status) AS status_count
+FROM
+  luisalva.crowdfunding_dataset.projects
+WHERE
+  country = 'United States'
+GROUP BY
+  status
+ORDER BY
+  status_count DESC;
 
 
