@@ -88,4 +88,8 @@ GROUP BY
 ORDER BY
   status_count DESC;
 
+projects by month/year
+what is the dates of the data.
+what categpories of projects have the largest amount of suceess
+what categories of projects have the least almount of success
 
