@@ -92,4 +92,5 @@ projects by month/year
 what is the dates of the data.
 what categpories of projects have the largest amount of suceess
 what categories of projects have the least almount of success
-
+investigate in projects with status success
+leaunch date, dateline
