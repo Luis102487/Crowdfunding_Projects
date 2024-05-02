@@ -38,6 +38,49 @@ GROUP BY
 ORDER BY
   project_count DESC;
 
+-- What projects category has the largest amount of suceess?
+SELECT
+  category,
+  COUNT(category) AS category_count
+FROM
+  luisalva.crowdfunding_dataset.projects
+WHERE
+  status = 'Successful'
+GROUP BY
+  category
+ORDER BY
+  category_count DESC
+LIMIT
+  1;
+
+
+-- What projects category has the least almount of success?
+SELECT
+  category,
+  COUNT(category) AS category_count
+FROM
+  luisalva.crowdfunding_dataset.projects
+WHERE
+  status = 'Successful'
+GROUP BY
+  category
+ORDER BY
+  category_count 
+LIMIT
+  1;
+
+
+-- Average backers by category
+SELECT
+  category,
+  ROUND(AVG(backers), 2) AS avg_backers
+FROM
+  luisalva.crowdfunding_dataset.projects
+GROUP BY
+  category
+ORDER BY
+  avg_backers DESC;
+
 
 -- Countries in the dataset
 SELECT
@@ -56,6 +99,19 @@ GROUP BY
   country
 ORDER BY
   project_count DESC;
+
+
+-- Country with most backers 
+SELECT
+  country,
+  SUM(backers) AS avg_backers
+FROM
+  luisalva.crowdfunding_dataset.projects
+GROUP BY
+  country
+ORDER BY
+  avg_backers DESC;
+
 
 
 -- How many statuses are there for projects?
@@ -95,14 +151,28 @@ GROUP BY
 ORDER BY
   status_count DESC;
 
+
+-- Category with most money pleadge
+SELECT
+  category,
+  SUM(pledged) AS pledge_total
+FROM
+  luisalva.crowdfunding_dataset.projects
+GROUP BY
+  category
+ORDER BY
+  pledge_total;
+
+
+
+
+  
+
 projects by month/year
-what is the dates of the data.
-what categpories of projects have the largest amount of suceess
-what categories of projects have the least almount of success
 investigate in projects with status success
-leaunch date, dateline
-categories with most backers
-category with most money pleadge
+average days leaunch date, dateline
+
+
 project with the most money pleadge
 project with the most money goal
 countries with most succesful projects
