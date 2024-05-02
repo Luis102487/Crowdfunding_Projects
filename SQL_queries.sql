@@ -12,6 +12,13 @@ SELECT
 FROM
   luisalva.crowdfunding_dataset.projects;
 
+-- What is the timeframe of the data.
+SELECT
+  MIN(launched) AS first_date,
+  MAX(launched) AS last_date
+FROM
+  luisalva.crowdfunding_dataset.projects;
+
 
 -- Categories in the dataset
 SELECT
