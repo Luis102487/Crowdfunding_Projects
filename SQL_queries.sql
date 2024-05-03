@@ -241,3 +241,8 @@ investigate money goal vs money pledged
 -- Average difference between money goal and money pledged for succesul status  by categoryey pledged 
 -- category with the average most difference between goal and money pledged
 -- Projects with the most difference between goal and money pledged
+
+
+Your task is to provides data-driven recommendations for the types of 
+projects they should be looking at for future success.
+
