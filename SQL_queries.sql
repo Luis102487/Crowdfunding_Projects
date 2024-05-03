@@ -164,6 +164,66 @@ ORDER BY
   pledge_total;
 
 
+-- Project with the most money pledged
+SELECT name, category, country, launched, goal, pledged, backers, status
+FROM
+  luisalva.crowdfunding_dataset.projects
+where pledged = (select max(pledged) from luisalva.crowdfunding_dataset.projects)
+
+
+-- Project with the most money goal
+SELECT
+  name,
+  category,
+  country,
+  launched,
+  goal,
+  pledged,
+  backers,
+  status
+FROM
+  luisalva.crowdfunding_dataset.projects
+WHERE
+  goal = (SELECT MAX(goal)
+          FROM
+            luisalva.crowdfunding_dataset.projects);
+
+
+-- Countries with most succesful projects
+SELECT
+  country,
+  COUNT(status) AS success_count
+FROM
+  luisalva.crowdfunding_dataset.projects
+WHERE
+  status = 'Successful'
+GROUP BY
+  country
+ORDER BY
+  success_count DESC;
+
+
+-- Average difference between money goal and money pledge
+
+
+
+
+-- Average difference between money goal and money pledged for succesul status  by category
+SELECT
+  category,
+  ROUND(AVG(goal - pledged), 2) AS avg_diff
+FROM
+  luisalva.crowdfunding_dataset.projects
+GROUP BY
+  category
+ORDER BY
+  avg_diff DESC;
+--- cambia esta
+
+  
+-- Project above average money pledged 
+-- category with the average most difference between goal and money pledged
+-- Projects with the most difference between goal and money pledged
 
 
   
@@ -173,6 +233,11 @@ investigate in projects with status success
 average days leaunch date, dateline
 
 
-project with the most money pleadge
-project with the most money goal
-countries with most succesful projects
+
+
+
+investigate money goal vs money pledged
+-- 
+-- Average difference between money goal and money pledged for succesul status  by categoryey pledged 
+-- category with the average most difference between goal and money pledged
+-- Projects with the most difference between goal and money pledged
