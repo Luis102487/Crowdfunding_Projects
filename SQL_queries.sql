@@ -1,5 +1,5 @@
 -- DATA CLEANING
--- Checking for duplicate records
+-- Checking for duplicate records by primary key 
 select project_id, count(project_id) as project_count
 from luisalva.crowdfunding_dataset.projects
 group by project_id
@@ -12,7 +12,7 @@ SELECT
 FROM
   luisalva.crowdfunding_dataset.projects;
 
--- What is the timeframe of the data.
+-- What is the timeframe of the data
 SELECT
   MIN(launched) AS first_date,
   MAX(launched) AS last_date
@@ -203,44 +203,65 @@ ORDER BY
   success_count DESC;
 
 
--- Average difference between money goal and money pledge
-
-
-
-
--- Average difference between money goal and money pledged for succesul status  by category
+-- Top 10 projects with the most difference between money pledged and money goal
 SELECT
-  category,
-  ROUND(AVG(goal - pledged), 2) AS avg_diff
+  name,
+  (pledged - goal) AS difference
 FROM
   luisalva.crowdfunding_dataset.projects
+WHERE
+  status = 'Successful'
+ORDER BY
+  difference DESC
+LIMIT 10;
+
+-- Average difference between money pledged and money goal for succesul project status
+SELECT
+  ROUND(AVG(pledged - goal), 2) AS difference
+FROM
+  luisalva.crowdfunding_dataset.projects
+WHERE
+  status = 'Successful';
+
+
+-- Successful projects above average money pledged
+SELECT
+  name,
+  category,
+  (pledged - goal) AS difference
+FROM
+  luisalva.crowdfunding_dataset.projects
+WHERE
+  status = 'Successful'
+  AND (pledged - goal) > (
+  SELECT
+    ROUND(AVG(pledged - goal), 2)
+  FROM
+    luisalva.crowdfunding_dataset.projects
+  WHERE
+    status = 'Successful');
+
+
+-- Average difference between money pledged and money goal for succesul project status by category
+SELECT
+  category,
+  ROUND(AVG(pledged - goal), 2) AS difference
+FROM
+  luisalva.crowdfunding_dataset.projects
+WHERE
+  status = 'Successful'
 GROUP BY
   category
 ORDER BY
-  avg_diff DESC;
---- cambia esta
-
-  
--- Project above average money pledged 
--- category with the average most difference between goal and money pledged
--- Projects with the most difference between goal and money pledged
-
-
+  difference DESC;
   
 
 projects by month/year
-investigate in projects with status success
+investigate projects with fail status
 average days leaunch date, dateline
 
+ 
 
-
-
-
-investigate money goal vs money pledged
--- 
--- Average difference between money goal and money pledged for succesul status  by categoryey pledged 
--- category with the average most difference between goal and money pledged
--- Projects with the most difference between goal and money pledged
 
 
 Your task is to provides data-driven recommendations for the types of 
