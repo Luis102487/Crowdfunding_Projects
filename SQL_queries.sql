@@ -90,13 +90,6 @@ ORDER BY
   pledge_total;
 
 
--- Project with the most money pledged
-SELECT name, category, country, launched, goal, pledged, backers, status
-FROM
-  luisalva.crowdfunding_dataset.projects
-where pledged = (select max(pledged) from luisalva.crowdfunding_dataset.projects)
-
-
 -- Countries with most succesful projects
 SELECT
   country,
