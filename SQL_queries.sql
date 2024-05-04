@@ -1,32 +1,3 @@
--- DATA CLEANING
--- Checking for duplicate records by primary key 
-select project_id, count(project_id) as project_count
-from luisalva.crowdfunding_dataset.projects
-group by project_id
-order by project_count;
-
-
--- How many crowdfunding projects in the dataset
-SELECT
-  COUNT(project_id)
-FROM
-  luisalva.crowdfunding_dataset.projects;
-
--- What is the timeframe of the data
-SELECT
-  MIN(launched) AS first_date,
-  MAX(launched) AS last_date
-FROM
-  luisalva.crowdfunding_dataset.projects;
-
-
--- Categories in the dataset
-SELECT
-  DISTINCT category
-FROM
-  luisalva.crowdfunding_dataset.projects;
-
-
 -- Projects by category
 SELECT
   category,
@@ -54,22 +25,6 @@ LIMIT
   1;
 
 
--- What projects category has the least almount of success?
-SELECT
-  category,
-  COUNT(category) AS category_count
-FROM
-  luisalva.crowdfunding_dataset.projects
-WHERE
-  status = 'Successful'
-GROUP BY
-  category
-ORDER BY
-  category_count 
-LIMIT
-  1;
-
-
 -- Average backers by category
 SELECT
   category,
@@ -80,13 +35,6 @@ GROUP BY
   category
 ORDER BY
   avg_backers DESC;
-
-
--- Countries in the dataset
-SELECT
-  DISTINCT country
-FROM
-  luisalva.crowdfunding_dataset.projects;
 
   
 -- Projects by country
@@ -113,14 +61,6 @@ ORDER BY
   avg_backers DESC;
 
 
-
--- How many statuses are there for projects?
-SELECT
-  DISTINCT status,
-FROM
-  luisalva.crowdfunding_dataset.projects
-
-
 -- Projects status percentage
 SELECT
   status,
@@ -136,20 +76,6 @@ GROUP BY
   status
 ORDER BY
   status_percentage DESC;
-
-
--- What is the highest status count in the USA?
-SELECT
-  status,
-  COUNT(status) AS status_count
-FROM
-  luisalva.crowdfunding_dataset.projects
-WHERE
-  country = 'United States'
-GROUP BY
-  status
-ORDER BY
-  status_count DESC;
 
 
 -- Category with most money pleadge
@@ -169,24 +95,6 @@ SELECT name, category, country, launched, goal, pledged, backers, status
 FROM
   luisalva.crowdfunding_dataset.projects
 where pledged = (select max(pledged) from luisalva.crowdfunding_dataset.projects)
-
-
--- Project with the most money goal
-SELECT
-  name,
-  category,
-  country,
-  launched,
-  goal,
-  pledged,
-  backers,
-  status
-FROM
-  luisalva.crowdfunding_dataset.projects
-WHERE
-  goal = (SELECT MAX(goal)
-          FROM
-            luisalva.crowdfunding_dataset.projects);
 
 
 -- Countries with most succesful projects
@@ -214,14 +122,6 @@ WHERE
 ORDER BY
   difference DESC
 LIMIT 10;
-
--- Average difference between money pledged and money goal for succesul project status
-SELECT
-  ROUND(AVG(pledged - goal), 2) AS difference
-FROM
-  luisalva.crowdfunding_dataset.projects
-WHERE
-  status = 'Successful';
 
 
 -- Successful projects above average money pledged
