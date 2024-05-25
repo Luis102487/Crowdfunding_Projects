@@ -135,7 +135,7 @@ ORDER BY
 
 
 
--- Top 10 projects with the most difference between money pledged and money goal--- add category
+-- Top 10 projects with the most difference between money pledged and money goal
 SELECT
   category,
   name,
