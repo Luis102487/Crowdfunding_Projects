@@ -95,8 +95,6 @@ GROUP BY
 ORDER BY
   avg_backers DESC;
 
-
----------------COUNTRY
   
 -- Projects by country
 SELECT
@@ -122,6 +120,18 @@ GROUP BY
   country
 ORDER BY
   success_count DESC;
+
+
+-- Average goal per country
+SELECT
+  country,
+  ROUND(AVG(goal), 2) AS avg_goal
+FROM
+  luisalva.crowdfunding_dataset.projects
+GROUP BY
+  country
+ORDER BY
+  avg_goal DESC;
 
 
 -- Country with most backers 
