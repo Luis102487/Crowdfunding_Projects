@@ -139,13 +139,13 @@ ORDER BY
 -- Average money pledged by country
 SELECT
   country,
-  AVG(pledged) AS total_pledged
+  ROUND(AVG(pledged), 2) AS avg_pledged
 FROM
   luisalva.crowdfunding_dataset.projects
 GROUP BY
   country
 ORDER BY
-  total_pledged DESC;
+  avg_pledged DESC;
 
 
 -- Top 10 projects with the most difference between money pledged and money goal
