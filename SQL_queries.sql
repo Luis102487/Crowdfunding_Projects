@@ -43,8 +43,15 @@ LIMIT
 
 
 -- Average goal per category
-
---- succesful project with large goals/small goal
+SELECT
+  category,
+  ROUND(AVG(goal), 2) AS avg_goal
+FROM
+  luisalva.crowdfunding_dataset.projects
+GROUP BY
+  category
+ORDER BY
+  avg_goal DESC;
 
 
 -- Money pledged by category
@@ -129,9 +136,16 @@ ORDER BY
   avg_backers DESC;
 
 
--- Countries with most money pledged
--- AVerage goal per country 
-
+-- Average money pledged by country
+SELECT
+  country,
+  AVG(pledged) AS total_pledged
+FROM
+  luisalva.crowdfunding_dataset.projects
+GROUP BY
+  country
+ORDER BY
+  total_pledged DESC;
 
 
 -- Top 10 projects with the most difference between money pledged and money goal
