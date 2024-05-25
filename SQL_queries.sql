@@ -9,7 +9,6 @@ GROUP BY
 ORDER BY
   project_count DESC;
 
-
 -- Projects status percentage
 SELECT
   status,
@@ -166,7 +165,7 @@ ORDER BY
 projects by month/year
 investigate projects with fail status
 average days leaunch date, dateline
-
+success rate by category, out of 100 porject 23 are successull.
  
 
 
