@@ -27,7 +27,7 @@ ORDER BY
   status_percentage DESC;
 
 
--- What projects category has the largest amount of suceess?
+-- What category has the project with largest amount of suceess?
 SELECT
   category,
   COUNT(category) AS category_count
@@ -44,27 +44,31 @@ LIMIT
 
 
 -- Success percentage by category
-SELECT
-  category,
-  COUNT(category) AS total_count,
-  (
+WITH
+  successful AS (
   SELECT
-    COUNT(category)
+    category,
+    COUNT(category) AS success_count
   FROM
     luisalva.crowdfunding_dataset.projects
   WHERE
-    status = 'Successful') AS success_count,
-  ROUND(COUNT(category)/(
-    SELECT
-      COUNT(category)
-    FROM
-      luisalva.crowdfunding_dataset.projects
-    WHERE
-      status = 'Successful') * 100, 2) AS success_percentage
+    status = 'Successful'
+  GROUP BY
+    category)
+SELECT
+  p.category,
+  COUNT(p.category) AS total_count,
+  s.success_count,
+  ROUND(s.success_count / COUNT(p.category) * 100, 2) AS success_percentage
 FROM
-  luisalva.crowdfunding_dataset.projects
+  luisalva.crowdfunding_dataset.projects p
+JOIN
+  successful s
+ON
+  p.category = s.category
 GROUP BY
-  category
+  p.category,
+  s.success_count
 ORDER BY
   success_percentage DESC
 
