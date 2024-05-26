@@ -153,6 +153,36 @@ ORDER BY
   success_count DESC;
 
 
+-- Success percentage by category
+WITH
+  successful AS (
+  SELECT
+    country,
+    COUNT(country) AS success_count
+  FROM
+    luisalva.crowdfunding_dataset.projects
+  WHERE
+    status = 'Successful'
+  GROUP BY
+    country)
+SELECT
+  p.country,
+  COUNT(p.country) AS total_count,
+  s.success_count,
+  ROUND(s.success_count / COUNT(p.country) * 100, 2) AS success_percentage
+FROM
+  luisalva.crowdfunding_dataset.projects p
+JOIN
+  successful s
+ON
+  p.country = s.country
+GROUP BY
+  p.country,
+  s.success_count
+ORDER BY
+  success_percentage DESC
+
+
 -- Average goal per country
 SELECT
   country,
@@ -219,7 +249,6 @@ ORDER BY
 
 projects by month/year
 investigate projects with fail status
-success rate by category, out of 100 porject 23 are successull.
 -- Successful projects above average money pledged --- revise
 
 
