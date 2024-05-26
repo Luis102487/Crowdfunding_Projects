@@ -101,14 +101,15 @@ ORDER BY
 SELECT
   name,
   category,
-  (pledged - goal) AS difference
+  pledged,
+  goal
 FROM
   luisalva.crowdfunding_dataset.projects
 WHERE
   status = 'Successful'
-  AND (pledged - goal) > (
+  AND pledged > (
   SELECT
-    ROUND(AVG(pledged - goal), 2)
+    ROUND(AVG(pledged), 2)
   FROM
     luisalva.crowdfunding_dataset.projects
   WHERE
@@ -249,7 +250,6 @@ ORDER BY
 
 projects by month/year
 investigate projects with fail status
--- Successful projects above average money pledged --- revise
 
 
 
