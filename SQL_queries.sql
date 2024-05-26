@@ -246,9 +246,22 @@ GROUP BY
   category
 ORDER BY
   difference DESC;
+
+
+  -- Successful projects per month
+SELECT
+  EXTRACT(YEAR_MONTH FROM launched) AS launched_month,
+  COUNT(project_id) AS project_count
+FROM
+  luisalva.crowdfunding_dataset.projects
+WHERE
+  status = 'Successful'
+GROUP BY
+  launched_month
+ORDER BY
+  project_count DESC;
   
 
-projects by month/year
   average date to deadline
 investigate projects with fail status
 
