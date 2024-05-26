@@ -190,7 +190,7 @@ ORDER BY
 projects by month/year
 investigate projects with fail status
 success rate by category, out of 100 porject 23 are successull.
- 
+-- Successful projects above average money pledged --- revise
 
 
 
