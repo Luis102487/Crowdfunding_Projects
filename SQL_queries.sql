@@ -43,6 +43,32 @@ LIMIT
   1;
 
 
+-- Success percentage by category
+SELECT
+  category,
+  COUNT(category) AS total_count,
+  (
+  SELECT
+    COUNT(category)
+  FROM
+    luisalva.crowdfunding_dataset.projects
+  WHERE
+    status = 'Successful') AS success_count,
+  ROUND(COUNT(category)/(
+    SELECT
+      COUNT(category)
+    FROM
+      luisalva.crowdfunding_dataset.projects
+    WHERE
+      status = 'Successful') * 100, 2) AS success_percentage
+FROM
+  luisalva.crowdfunding_dataset.projects
+GROUP BY
+  category
+ORDER BY
+  success_percentage DESC
+
+
 -- Average goal per category
 SELECT
   category,
