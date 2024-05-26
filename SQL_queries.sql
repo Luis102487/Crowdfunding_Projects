@@ -249,6 +249,7 @@ ORDER BY
   
 
 projects by month/year
+  average date to deadline
 investigate projects with fail status
 
 
