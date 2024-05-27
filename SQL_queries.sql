@@ -262,9 +262,16 @@ ORDER BY
   project_count DESC;
   
 
-  average date to deadline
-investigate projects with fail status
-
+  -- Average days to deadline by category
+SELECT
+  category,
+  ROUND(AVG(DATE_DIFF(deadline, launched, day)), 1) AS avg_days_to_dealine
+FROM
+  luisalva.crowdfunding_dataset.projects
+GROUP BY
+  category
+ORDER BY
+  avg_days_to_dealine DESC
 
 
 Your task is to provides data-driven recommendations for the types of 
