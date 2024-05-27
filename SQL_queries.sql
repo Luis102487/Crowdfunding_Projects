@@ -70,7 +70,7 @@ GROUP BY
   p.category,
   s.success_count
 ORDER BY
-  success_percentage DESC
+  success_percentage DESC;
 
 
 -- Average goal per category
@@ -181,7 +181,7 @@ GROUP BY
   p.country,
   s.success_count
 ORDER BY
-  success_percentage DESC
+  success_percentage DESC;
 
 
 -- Average goal per country
@@ -271,9 +271,4 @@ FROM
 GROUP BY
   category
 ORDER BY
-  avg_days_to_dealine DESC
-
-
-Your task is to provides data-driven recommendations for the types of 
-projects they should be looking at for future success.
-
+  avg_days_to_dealine DESC;
